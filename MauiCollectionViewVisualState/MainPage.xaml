@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiCollectionViewVisualState.MainPage">
+    <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*" BackgroundColor="WhiteSmoke">
+
+        <Label Text="Welcome" />
+
+        <CollectionView 
+            Grid.Row="1" BackgroundColor="White"
+            ItemsSource="{Binding Path=DataStrings}" SelectionMode="Single"
+            SelectedItem="{Binding Path=DataStrings_SelectedItem, Mode=TwoWay}"
+            HorizontalOptions="Start" VerticalOptions="Start">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid 
+                        Margin="0" Padding="0" VerticalOptions="Center">
+                        <Label 
+                            Padding="0" Margin="14,4,4,4" LineBreakMode="NoWrap" 
+                            Text="{Binding Path=.}"  />
+                        <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroupList>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="Selected">
+                                            <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="SkyBlue" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateGroupList>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>                    
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Path=DataStrings_Text}"
+               VerticalOptions="Center" HorizontalOptions="Center"/>
+        <Button Text="Select BBBB in Code" Grid.Row="1" Grid.Column="2" Clicked="ButtonStrings_Clicked"
+                 VerticalOptions="Center" HorizontalOptions="Start"/>
+
+    </Grid>
+
+</ContentPage>
